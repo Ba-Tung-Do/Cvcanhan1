@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Đăng Ký Học Viên</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        form {
+            background-color: #ffffcc;
+            width: 400px;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            margin: 20px auto;
+        }
+        table {
+            width: 100%;
+        }
+        th {
+            background-color: #cfe8d5;
+            color: blue;
+            text-align: left;
+            padding: 10px;
+            font-size: 18px;
+        }
+        td {
+            padding: 8px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        textarea {
+            height: 50px;
+        }
+        .buttons {
+            text-align: center;
+        }
+        .buttons input {
+            width: 100px;
+            padding: 5px;
+            margin: 5px;
+            cursor: pointer;
+            background-color: #ddd;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .buttons input:hover {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+
+<form action="codegym.vn" method="post">
+    <table>
+        <tr>
+            <th colspan="2">ĐĂNG KÝ HỌC VIÊN</th>
+        </tr>
+        <tr>
+            <td>Họ và tên</td>
+            <td><input type="text" name="name" required></td>
+        </tr>
+        <tr>
+            <td>Ngày sinh</td>
+            <td><input type="date" name="dob" required></td>
+        </tr>
+        <tr>
+            <td>Giới tính</td>
+            <td>
+                <input type="radio" name="gender" value="Nam" required> Nam
+                <input type="radio" name="gender" value="Nữ" required> Nữ
+            </td>
+        </tr>
+        <tr>
+            <td>Địa chỉ</td>
+            <td><textarea name="address" required></textarea></td>
+        </tr>
+        <tr>
+            <td>Lớp</td>
+            <td>
+                <select name="class" required>
+                    <option value="">— Chọn lớp —</option>
+                    <option value="Lớp 1">Lớp 1</option>
+                    <option value="Lớp 2">Lớp 2</option>
+                    <option value="Lớp 3">Lớp 3</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td><input type="email" name="email" required></td>
+        </tr>
+        <tr>
+            <td>Điện thoại</td>
+            <td><input type="tel" name="phone" required></td>
+        </tr>
+        <tr class="buttons">
+            <td colspan="2">
+                <input type="submit" value="Đăng ký">
+                <input type="reset" value="Nhập lại">
+            </td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>
