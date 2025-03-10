@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hienthidaura</title>
+</head>
+<body>
+<!--  hien thi ket qua alert-->
+  <button type="button" onclick="showMessage();">Click Me!</button>
+    <script>
+        function showMessage(){
+            alert('Xin chào!');
+        }
+    </script>
+<!--hien thi qua su dung the html-->
+<div id="messgeDiv"></div>
+<button type="button" onclick="showMessage1();">Click Me!</button>
+<script>
+    function showMessage1(){
+        document.getElementById('messgeDiv').innerHTML = 'xin chao viet nam';
+    }
+</script>
+<!--hien thi ket qua bang ham document write-->
+<button type="button" onclick="showMessage3();">Click Me!</button>
+<script>
+    function showMessage3(){
+        document.write('xin chao viet nam');
+    }
+</script>
+<!--hien thi ket qua bang ham console-->
+<button type="button" onclick="showMessage4();">Click Me!</button>
+<script>
+    function showMessage4(){
+        console.log('xin chao viet nam');
+    }
+</script>
+</body>
+</html>
