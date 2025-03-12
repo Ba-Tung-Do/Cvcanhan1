@@ -23,3 +23,9 @@ function phepchia() {
    let  chia = sothunhat / sothuhai;
     document.getElementById("result").innerHTML = "result :" + chia;
 }
+// /* ghi chú */
+// function pheptru {
+//     sothunhat = document.getElementById("thefirst");
+//     let varsothunhat = parseFloat().value;
+//
+// }
