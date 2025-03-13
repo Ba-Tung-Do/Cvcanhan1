@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>phuongtrinhbac2</title>
+</head>
+<body>
+<script>
+  let a = parseFloat(prompt("Nhập hệ số a:"));
+  let b = parseFloat(prompt("Nhập hệ số b:"));
+  let c = parseFloat(prompt("Nhập hệ số c:"));
+
+  // Kiểm tra dữ liệu nhập vào
+  if (isNaN(a) || isNaN(b) || isNaN(c)) {
+    alert("Vui lòng nhập các số hợp lệ!");
+  } else if (a === 0) {
+    // Nếu a = 0 ➔ phương trình trở thành bậc nhất bx + c = 0
+    if (b === 0) {
+      if (c === 0) {
+        alert("Phương trình vô số nghiệm.");
+      } else {
+        alert("Phương trình vô nghiệm.");
+      }
+    } else {
+      let x = -c / b;
+      alert("Phương trình bậc nhất có nghiệm x = " + x.toFixed(2));
+    }
+  } else {
+    // Giải phương trình bậc 2
+    let delta = b * b - 4 * a * c;
+
+    if (delta < 0) {
+      alert("Phương trình vô nghiệm.");
+    } else if (delta === 0) {
+      let x = -b / (2 * a);
+      alert("Phương trình có nghiệm kép x = " + x.toFixed(2));
+    } else {
+      let sqrtDelta = Math.sqrt(delta);
+      let x1 = (-b + sqrtDelta) / (2 * a);
+      let x2 = (-b - sqrtDelta) / (2 * a);
+      alert("Phương trình có 2 nghiệm phân biệt:\n" +
+              "x1 = " + x1.toFixed(2) + "\n" +
+              "x2 = " + x2.toFixed(2));
+    }
+  }
+</script>
+</body>
+</html>

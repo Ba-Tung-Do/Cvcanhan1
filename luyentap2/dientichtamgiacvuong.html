@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  let a = parseFloat(prompt("Nhập cạnh a (đơn vị mét):"));
+  let b = parseFloat(prompt("Nhập cạnh b (đơn vị mét):"));
+
+  // Kiểm tra dữ liệu nhập vào
+  if (isNaN(a) || isNaN(b) || a <= 0 || b <= 0) {
+    alert("Vui lòng nhập 2 số dương hợp lệ cho cạnh a và b!");
+  } else {
+    // Tính diện tích tam giác vuông
+    let dienTich = (a * b) / 2;
+
+    // Hiển thị kết quả
+    alert("Diện tích tam giác vuông là: " + dienTich + " mét vuông");
+  }
+
+</script>
+</body>
+</html>

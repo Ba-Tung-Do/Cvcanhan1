@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  let a = parseFloat(prompt("Nhập chiều dài a (đơn vị mét):"));
+  let b = parseFloat(prompt("Nhập chiều rộng b (đơn vị mét):"));
+
+  // Kiểm tra giá trị nhập vào
+  if (isNaN(a) || isNaN(b) || a <= 0 || b <= 0) {
+    alert("Vui lòng nhập 2 số dương hợp lệ cho chiều dài và chiều rộng!");
+  } else {
+    // Tính diện tích
+    let dienTich = a * b;
+
+    // Hiển thị kết quả
+    alert("Diện tích hình chữ nhật là: " + dienTich + " mét vuông");
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>chuyển đổi nhiệt độ</title>
+</head>
+<body>
+<script>
+    let doC= + prompt("nhap vao nhiet do (°C)");
+    if (isNaN(doC)) {
+        alert("Vui lòng nhập một số hợp lệ!");
+    } else {
+        let doF = (doC * 9 / 5) + 32;
+        alert(doC + "°C tương đương " + doF.toFixed(2) + "°F");
+    }
+</script>
+</body>
+</html>

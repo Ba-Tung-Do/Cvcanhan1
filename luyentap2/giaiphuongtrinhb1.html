@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>giaiphuongtrinhb1</title>
+</head>
+<body>
+<script>
+  let a = + prompt("nhap vao he so a:")
+  let b = + prompt("nhap vao he so b:")
+  if (isNaN(a) || isNaN(b)) {
+    alert("Vui lòng nhập số hợp lệ cho a và b!");
+  } else {
+    if (a === 0) {
+      if (b === 0) {
+        alert("Phương trình có vô số nghiệm.");
+      } else {
+        alert("Phương trình vô nghiệm.");
+      }
+    } else {
+      let x = -b / a;
+      alert("Nghiệm của phương trình là x = " + x.toFixed(2));
+    }
+  }
+</script>
+</body>
+</html>

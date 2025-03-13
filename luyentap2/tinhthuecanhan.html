@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  let thuNhap = parseFloat(prompt("Nhập thu nhập chịu thuế hàng tháng (triệu VNĐ):"));
+  if (isNaN(thuNhap) || thuNhap < 0) {
+    alert("Vui lòng nhập số thu nhập hợp lệ!");
+  } else {
+    let thue = 0;
+    if (thuNhap <= 5) {
+      thue = thuNhap * 0.05;
+    } else if (thuNhap <= 10) {
+      thue = (5 * 0.05) + (thuNhap - 5) * 0.10;
+    } else if (thuNhap <= 18) {
+      thue = (5 * 0.05) + (5 * 0.10) + (thuNhap - 10) * 0.15;
+    } else if (thuNhap <= 32) {
+      thue = (5 * 0.05) + (5 * 0.10) + (8 * 0.15) + (thuNhap - 18) * 0.20;
+    } else if (thuNhap <= 52) {
+      thue = (5 * 0.05) + (5 * 0.10) + (8 * 0.15) + (14 * 0.20) + (thuNhap - 32) * 0.25;
+    } else if (thuNhap <= 80) {
+      thue = (5 * 0.05) + (5 * 0.10) + (8 * 0.15) + (14 * 0.20) + (20 * 0.25) + (thuNhap - 52) * 0.30;
+    } else {
+      thue = (5 * 0.05) + (5 * 0.10) + (8 * 0.15) + (14 * 0.20) + (20 * 0.25) + (28 * 0.30) + (thuNhap - 80) * 0.35;
+    }
+
+    // Hiển thị kết quả
+    alert("Thuế thu nhập cá nhân phải nộp là: " + thue.toFixed(3) + " triệu VNĐ");
+  }
+
+</script>
+</body>
+</html>

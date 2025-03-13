@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  let tienGoc = parseFloat(prompt("Nhập số tiền ban đầu (VNĐ):"));
+  let soThang = parseInt(prompt("Nhập số tháng gửi tiền:"));
+  let laiSuatThang = parseFloat(prompt("Nhập lãi suất hàng tháng (%):"));
+  if (isNaN(tienGoc) || tienGoc <= 0 ||
+          isNaN(soThang) || soThang <= 0 ||
+          isNaN(laiSuatThang) || laiSuatThang < 0) {
+    alert("Vui lòng nhập đầy đủ và đúng thông tin!");
+  } else {
+    // Quy đổi lãi suất về số thập phân
+    let laiSuatThapPhan = laiSuatThang / 100;
+
+    // Tính lãi kép
+    let tongTien = tienGoc * Math.pow(1 + laiSuatThapPhan, soThang);
+
+    // Hiển thị kết quả
+    alert("Sau " + soThang + " tháng, tổng số tiền nhận được là: " + tongTien.toLocaleString() + " VNĐ");
+  }
+
+</script>
+</body>
+</html>
