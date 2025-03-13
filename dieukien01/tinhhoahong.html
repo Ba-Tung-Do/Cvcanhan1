@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tinhhoahong</title>
+</head>
+<body>
+<script>
+  let doanhSo = parseFloat(prompt("Nhập doanh số bán hàng (triệu đồng):"));
+  let hoaHong = 0;
+
+  if (doanhSo >= 100) {
+    hoaHong = doanhSo * 0.10;
+  } else if (doanhSo >= 50) {
+    hoaHong = doanhSo * 0.07;
+  } else if (doanhSo >= 20) {
+    hoaHong = doanhSo * 0.05;
+  } else {
+    hoaHong = doanhSo * 0.02;
+  }
+
+  alert("Hoa hồng bạn nhận được là: " + hoaHong + " triệu đồng");
+</script>
+</body>
+</html>

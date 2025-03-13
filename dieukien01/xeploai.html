@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  let a = parseFloat(prompt("Diem bai kiem tra"));
+  let b = parseFloat(prompt("Diem thi giua ki"));
+  let c = parseFloat(prompt("Diem thi cuoi ki"));
+  let diemtb = (a + b + c)/3;
+  if (diemtb >= 9) {
+    alert( diemtb + ""+"Xep loai hoc sinh xuat sac");
+  } else if (diemtb >=8 && diemtb < 9) {
+    alert( diemtb + " " + "Xep loai hoc sinh gioi");
+  } else if (diemtb >=6.5 && diemtb <8 ) {
+    alert(diemtb + " " + "Xep loai hoc sinh trung binh-kha");
+  } else if (diemtb >=4 && diemtb <6.5 ) {
+    alert(diemtb + " " + "Xep loai hoc sinh trung binh");
+  } else if (diemtb >=2 && diemtb <4 ) {
+    alert(diemtb + " " + "Xep loai hoc sinh yeu");
+  } else {
+    alert(diemtb + " " +"Xep loai hoc sinh kem");
+  }
+
+
+
+</script>
+</body>
+</html>
