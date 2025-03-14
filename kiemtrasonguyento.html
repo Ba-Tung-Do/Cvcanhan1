@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  function isPrime(number) {
+    if (number < 2) return false;
+    for (let i = 2; i <= Math.sqrt(number); i++) {
+      if (number % i === 0) return false;
+    }
+    return true;
+  }
+  let count = 0;
+  let number = 2;
+
+  document.write("<ul>");
+  // Vòng lặp tìm đủ 20 số nguyên tố
+  while (count < 20) {
+    if (isPrime(number)) {
+      document.write("<li>" + number + "</li>");   // In ra số nguyên tố lên màn hình
+      count++;               // Tăng số lượng số cần tìm ( nhỏ hơn hoặc bằng 20 số )
+    }
+    number++;// Kiểm tra số tiếp theo
+  }
+</script>
+</body>
+</html>
