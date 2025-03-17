@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>In Hình Chữ Nhật 20x5</title>
+</head>
+<body>
+
+<script>
+    // Hàm in hình chữ nhật rỗng
+    function hcn(width, height) {
+        // In dòng đầu tiên
+        document.write("*".repeat(width) + "<br>");
+
+        // In các dòng giữa (rỗng bên trong)
+        for (let i = 1; i <= height - 2; i++) {
+            document.write("*" + "&nbsp;".repeat((width - 2) * 2) + "*" + "<br>");
+        }
+
+        // In dòng cuối cùng (nếu height > 1)
+        if (height > 1) {
+            document.write("*".repeat(width) + "<br>");
+        }
+    }
+
+    // Gọi hàm với width = 20 và height = 5
+    let width = 20;
+    let height = 5;
+    hcn(width, height);
+</script>
+
+</body>
+</html>

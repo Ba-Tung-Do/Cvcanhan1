@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let a = +prompt("nhap vao so fibonaci muon in ra : ");
+    let n1 = 0
+    let n2 = 1
+    let n3;
+
+    for (i = 0; i < a; i++) {
+        document.write(n1 + "<br>");
+        n3 = n1 + n2;
+        n1 = n2;
+        n2 = n3;
+    }
+
+</script>
+</body>
+</html>

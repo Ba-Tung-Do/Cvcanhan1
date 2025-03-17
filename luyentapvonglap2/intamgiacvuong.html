@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>In Tam Giác Vuông</title>
+</head>
+<body>
+
+<script>
+    let size = 5;
+    function bottomLeft(n) {
+        for (let i = 1; i <= n; i++) {
+            document.write("*".repeat(i) + "<br>");
+        }
+        document.write("<br>");
+    }
+    function topLeft(n) {
+        for (let i = n; i >= 1; i--) {
+            document.write("*".repeat(i) + "<br>");
+        }
+        document.write("<br>");
+    }
+    function bottomRight(n) {
+        for (let i = 1; i <= n; i++) {
+            document.write("&nbsp;".repeat((n - i) * 2) + "*".repeat(i) + "<br>");
+        }
+        document.write("<br>");
+    }
+    function topRight(n) {
+        for (let i = n; i >= 1; i--) {
+            document.write("&nbsp;".repeat((n - i) * 2) + "*".repeat(i) + "<br>");
+        }
+        document.write("<br>");
+    }
+    document.write("Góc vuông ở dưới bên trái:<br>");
+    bottomLeft(size);
+
+    document.write("Góc vuông ở trên bên trái:<br>");
+    topLeft(size);
+
+    document.write("Góc vuông ở dưới bên phải:<br>");
+    bottomRight(size);
+
+    document.write("Góc vuông ở trên bên phải:<br>");
+    topRight(size);
+</script>
+
+</body>
+</html>

@@ -7,13 +7,17 @@
 <body>
 <script>
   var n = parseFloat(prompt("Nhap vao nhiet do"));
-  for (let i = 0; i <= 100; i++) {
-    if (n > 100) {
-      document.write("giam nhiet do")
-    } else if (n < 20) {
-      document.write("tang nhiet do")
-  }
-  }
+  while (n > 100 || n <20) {
+      if (n>100){
+          document.write("Giam nhiet do");
+          break;
+          }
+      else {
+          document.write("tang nhiet do");
+          break;
+      }
+      }
+
 </script>
 </body>
 </html>
