@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  document.write("&nbsp;".repeat(2) + "*".repeat(3)  + "&nbsp;".repeat(5) + "*".repeat(3) + "&nbsp;" +"<br>");
+  document.write("*".repeat(5) + "&nbsp;".repeat(2) + "*".repeat(5) +"<br>");
+  for (let i = 6; i >= 1; i--) {
+    let space = "&nbsp;".repeat((6 - i) * 2);
+
+    // Tính số dấu *
+    let stars = "*".repeat(i * 2 - 1);
+
+    // In ra 1 dòng tam giác
+    document.write(space + stars + "<br>");
+  }
+</script>
+</body>
+</html>

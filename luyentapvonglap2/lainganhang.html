@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>lai ngan hang</title>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Tính lãi ngân hàng (dùng vòng lặp)</title>
+</head>
+<body>
+
+<script>
+    // Nhập số liệu ban đầu
+    let P = parseFloat(prompt("Nhập số tiền ban đầu (VND):", 1000000));
+    let n = parseInt(prompt("Nhập số tháng gửi:", 12));
+    let r = parseFloat(prompt("Nhập lãi suất hàng tháng (%):", 0.5));
+
+    // Chuyển lãi suất phần trăm thành số thập phân
+    r = r / 100;
+
+    // Hiển thị thông tin ban đầu
+    document.write("Số tiền ban đầu: " + P.toLocaleString() + " VND<br>");
+    document.write("Số tháng gửi: " + n + " tháng<br>");
+    document.write("Lãi suất hàng tháng: " + (r * 100).toFixed(2) + "%<br><br>");
+
+    // Biến lưu số tiền hiện tại
+    let currentAmount = P;
+
+    // Vòng lặp tính lãi mẹ đẻ lãi con qua từng tháng
+    for (let month = 1; month <= n; month++) {
+        let interest = currentAmount * r;  // Tính lãi trong tháng này
+        currentAmount += interest;         // Cộng lãi vào số tiền hiện có
+
+        // Hiển thị thông tin từng tháng
+        document.write("Tháng " + month + ": " + currentAmount.toLocaleString() + " VND<br>");
+    }
+
+    // Hiển thị kết quả cuối cùng
+    document.write("<br><strong>Tổng số tiền sau " + n + " tháng là: " + currentAmount.toLocaleString() + " VND</strong>");
+</script>
+
+</body>
+</html>
+
+</body>
+</html>
