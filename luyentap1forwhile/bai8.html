@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trò chơi đoán số</title>
+</head>
+<body>
+<button onclick="doanso()">Bắt đầu</button>
+
+<h3 id="result"></h3>
+
+<script>
+  function doanso() {
+    let number = +prompt("Bạn muốn đoán số trong khoảng từ 0 đến bao nhiêu?");
+    let number_ran = Math.floor(Math.random() * (number + 1));
+    console.log("Số ngẫu nhiên là:", number_ran);
+
+    let count = 0;
+    let number_check = +prompt("Nhập số bạn đoán");
+
+    while (number_check !== number_ran) {
+      count++;
+      if (count === 4) {
+        alert("Bạn hết số lần đoán!");
+        break;
+      } else if (number_check < number_ran) {
+        alert("Số bạn đoán nhỏ hơn!");
+      } else if (number_check > number_ran) {
+        alert("Số bạn đoán lớn hơn!");
+      }
+
+      number_check = +prompt("Nhập số bạn đoán lại");
+    }
+
+    if (number_check === number_ran) {
+      document.getElementById("result").innerText = "Bạn đã đoán đúng số. Chúc mừng bạn!";
+    } else {
+      document.getElementById("result").innerText = "Bạn đã thua. Số đúng là: " + number_ran;
+    }
+  }
+</script>
+</body>
+</html>
