@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  let chuoi = prompt("nhap vao chuoi so");
+  let cacSo = chuoi.split("");
+  let ketQua = "";
+  for (let i = 0; i < cacSo.length; i++) {
+    ketQua = ketQua + cacSo[i]
+    if (cacSo[i] % 2 == 0 && cacSo[i + 1] % 2 == 0) {
+      ketQua = ketQua + "-";
+    }
+  }
+  document.write(ketQua);
+</script>
+</body>
+</script>
+</body>
+</html>

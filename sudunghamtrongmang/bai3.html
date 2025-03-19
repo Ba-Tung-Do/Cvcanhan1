@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Đổi chữ hoa và thường</title>
+</head>
+<body>
+
+<script>
+  let inputString = prompt("Nhập vào một chuỗi:");
+  let resultString = ""; // tao mot chuoi moi
+
+  for (let i = 0; i < inputString.length; i++) { // dung for chay lan luot cac phan tu trong chuoi
+    let char = inputString[i];
+
+    if (char === char.toUpperCase()) { // neu chu thuong bien doi thanh chu hoa
+      resultString += char.toLowerCase();
+    }
+    else { // nguoc lai thi biet thanh chu thuong
+      resultString += char.toUpperCase();
+    }
+  }
+
+  document.write("Chuỗi sau khi chuyển đổi: " + resultString);
+  console.log("Chuỗi sau khi chuyển đổi:", resultString);
+</script>
+
+</body>
+</html>
