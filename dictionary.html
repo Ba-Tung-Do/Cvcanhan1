@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Từ điển Việt - Anh (indexOf)</title>
+</head>
+<body>
+
+<h2>Từ điển đơn giản</h2>
+<form id="dictionaryForm">
+  <fieldset>
+    <legend>Dictionary</legend>
+    <input type="text" id="inputWord" placeholder="Nhập vào từ cần dịch">
+    <button type="submit" id="dich">Dịch</button>
+  </fieldset>
+</form>
+
+<div id="result"></div>
+
+<script>
+  let arr_vi = ["mot", "hai", "ba"];
+  let arr_en = ["one", "two", "three"];
+
+  document.getElementById('dictionaryForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Ngăn không cho reload trang
+
+    let input = document.getElementById('inputWord').value.toLowerCase(); // Lấy từ nhập vào, đổi về chữ thường
+    let index = arr_vi.indexOf(input); // Tìm vị trí của từ nhập vào trong mảng arr_vi
+
+    let resultDiv = document.getElementById('result');
+
+    if (index !== -1) {
+      resultDiv.innerHTML = `<p><strong>${input}</strong> có nghĩa là <strong>${arr_en[index]}</strong></p>`;
+    } else {
+      resultDiv.innerHTML = `<p>Không tìm thấy từ <strong>${input}</strong> trong từ điển!</p>`;
+    }
+  });
+</script>
+
+</body>
+</html>
