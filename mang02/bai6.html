@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Thay thế '-' bằng '_'</title>
+</head>
+<body>
+<script>
+  let arr = [];
+  let size = +prompt("Nhập kích thước của mảng ký tự: ");
+
+  // Nhập từng ký tự từ người dùng
+  for (let i = 0; i < size; i++) {
+    let char = prompt("Nhập ký tự thứ " + (i + 1) + ": ");
+    arr.push(char);
+  }
+
+  // Hiển thị mảng ban đầu
+  let mang1 = arr.join(", ");
+  document.write("Mảng ban đầu: " + mang1 + "<br>");
+
+  // Thay thế '-' thành '_'
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === '-') {
+      arr[i] = '_';
+    }
+  }
+
+  // Hiển thị mảng sau khi thay thế
+  let mang2 = arr.join(", ");
+  document.write("Mảng sau khi thay thế: " + mang2 + "<br>");
+</script>
+</body>
+</html>
