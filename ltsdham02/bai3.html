@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Giai thừa</title>
+</head>
+<body>
+<script>
+  function giaithua(n) {
+    // Kiểm tra điều kiện n >= 0
+    if (n < 0) {
+      return "Không có giai thừa cho số âm!";
+    }
+
+    let sum = 1; // Khởi tạo kết quả giai thừa = 1
+
+    for (let i = 1; i <= n; i++) {
+      sum *= i; // Nhân dồn các giá trị từ 1 đến n
+    }
+
+    return sum; // Trả về kết quả cuối cùng
+  }
+
+  // Nhập số n từ người dùng
+  let n = parseInt(prompt("Nhập số n để tính giai thừa:"));
+
+  // Gọi hàm và hiển thị kết quả
+  alert(`Giai thừa của ${n} là ${giaithua(n)}`);
+</script>
+</body>
+</html>

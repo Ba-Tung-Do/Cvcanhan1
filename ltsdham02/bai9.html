@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kiểm tra ký tự trong mảng</title>
+</head>
+<body>
+<script>
+  function kiemTraKyTu(array, char) {
+    let count = 0;
+
+    for (let i = 0; i < array.length; i++) {
+      if (array[i] === char) {
+        count++;
+      }
+    }
+
+    if (count > 0) {
+      return count; // Ký tự có trong mảng, trả về số lần xuất hiện
+    } else {
+      return -1; // Không có ký tự trong mảng
+    }
+  }
+
+  // Test thử
+  let arr = ['a', 'b', 'c', 'a', 'd', 'e', 'a'];
+  let kyTu = prompt("Nhập ký tự muốn kiểm tra:");
+
+  let ketQua = kiemTraKyTu(arr, kyTu);
+
+  if (ketQua !== -1) {
+    alert(`Ký tự "${kyTu}" xuất hiện ${ketQua} lần trong mảng.`);
+  } else {
+    alert(`Ký tự "${kyTu}" không xuất hiện trong mảng.`);
+  }
+</script>
+</body>
+</html>

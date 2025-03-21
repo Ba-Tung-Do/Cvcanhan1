@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Diện tích và chu vi hình tròn</title>
+</head>
+<body>
+<script>
+  // Hàm tính diện tích hình tròn
+  function dienTich(r) {
+    return Math.PI * r * r;
+  }
+
+  // Hàm tính chu vi hình tròn
+  function chuVi(r) {
+    return Math.PI * r * 2;
+  }
+
+  // Khai báo bán kính r
+  let r = 3;
+
+  // Gọi hàm và hiển thị kết quả
+  alert("Diện tích hình tròn bán kính " + r + " là: " + dienTich(r));
+  alert(`Chu vi hình tròn bán kính ${r} là: ${chuVi(r)}`);
+</script>
+</body>
+</html>
