@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tăng giá trị số</title>
+</head>
+<body>
+
+<h2>Nhập số cần tăng và xem kết quả</h2>
+
+<input type="number" id="numberInput" placeholder="Nhập số bất kỳ">
+<button onclick="tanglen1()">Tăng lên 1 và hiển thị</button>
+
+<p id="result"></p>
+
+<script>
+  // Hàm tăng giá trị lên 1
+  function tang(x) {
+    return x + 1;
+  }
+
+  // Hàm gọi khi nhấn nút
+  function tanglen1() {
+    // Lấy giá trị từ input và ép kiểu về số
+    let x = Number(document.getElementById("numberInput").value);
+
+    // Gọi hàm tang(x)
+    let result = tang(x);
+
+    // Hiển thị kết quả
+    document.getElementById("result").innerHTML = "Giá trị sau khi tăng lên 1 là: " + result;
+  }
+</script>
+</body>
+</html>

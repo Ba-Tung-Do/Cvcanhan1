@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tìm chòm sao theo ngôi sao</title>
+</head>
+<body>
+<script>
+  let a = ["Polaris", "Aldebaran", "Deneb", "Vega", "Altair", "Dubhe", "Regulus"];
+  let b = ["Ursa Minor", "Taurus", "Cygnus", "Lyra", "Aquila", "Ursa Major", "Leo"];
+
+  function timSao(ngoisao) {
+    for (let i = 0; i < a.length; i++) {
+      if (a[i].toLowerCase() === ngoisao.toLowerCase()) { // giá trị chuyển về chữ hoa và so sánh với biến nhập
+        return b[i]; // Trả về chòm sao tương ứng
+      }
+    }
+    return null; // Không tìm thấy thì trả về null
+  }
+
+  let ngoisao = prompt("Nhập vào tên ngôi sao");
+
+  if (ngoisao !== null && ngoisao.trim() !== "") { // neu gia tri không rỗng và không có khoảng trắng
+    let chomsao = timSao(ngoisao);
+
+    if (chomsao !== null) { // chòm sao có giá trị tương ứng
+      alert("Ngôi sao " + ngoisao + " thuộc chòm sao: " + chomsao);
+    } else {
+      alert("Không tìm thấy ngôi sao: " + ngoisao);
+    }
+  } else {
+    alert("Bạn chưa nhập tên ngôi sao.");
+  }
+</script>
+</body>
+</html>
