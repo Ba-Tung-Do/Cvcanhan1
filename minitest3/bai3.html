@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Đếm số chẵn trong mảng</title>
+</head>
+<body>
+
+<script>
+  function demSoChan(arr) {
+    let count = 0;
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] % 2 === 0) {
+        count++;
+      }
+    }
+    return count;
+  }
+
+  let input = prompt("Nhập các số, cách nhau bởi dấu phẩy (,):");
+  let numbers = input.split(",").map(Number); // tách chuỗi và trả về giá trị kiểu số
+
+  let soChan = demSoChan(numbers);
+
+  alert(`Số lượng số chẵn trong mảng là: ${soChan}`);
+</script>
+
+</body>
+</html>

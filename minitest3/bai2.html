@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Đánh giá học lực</title>
+</head>
+<body>
+
+<script>
+    function danhGiaDiem(toan, anh, van) {
+        let diemTB = (toan + anh + van) / 3;
+
+        if (diemTB < 5) {
+            return `Điểm trung bình: ${diemTB.toFixed(2)} - Không đạt`;
+        } else if (diemTB < 8) {
+            return `Điểm trung bình: ${diemTB.toFixed(2)} - Đạt`;
+        } else {
+            return `Điểm trung bình: ${diemTB.toFixed(2)} - Tốt`;
+        }
+    }
+
+    let toan = parseFloat(prompt("Nhập điểm Toán:"));
+    let anh = parseFloat(prompt("Nhập điểm Tiếng Anh:"));
+    let van = parseFloat(prompt("Nhập điểm Văn:"));
+
+    let ketQua = danhGiaDiem(toan, anh, van);
+
+    alert(ketQua);
+</script>
+
+</body>
+</html>

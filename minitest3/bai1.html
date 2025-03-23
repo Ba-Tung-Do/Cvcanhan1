@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Xóa phần tử khỏi mảng (không dùng filter)</title>
+</head>
+<body>
+<script>
+    function xoaPhanTu(arr, a) {
+        let newArray = [];
+
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] !== a) {
+                newArray.push(arr[i]);
+            }
+        }
+
+        return newArray;
+    }
+
+    // Nhập mảng và số cần xóa từ người dùng
+    let inputArr = prompt("Nhập các số, cách nhau bởi dấu phẩy (,):");
+    let arr = inputArr.split(",").map(Number); // tách chuỗi và trả về giá trị kiểu số number
+
+    let number = parseInt(prompt("Nhập số cần xóa:"));
+
+    let ketQua = xoaPhanTu(arr, number);
+
+    alert("Mảng sau khi xóa phần tử " + number + " là: " + ketQua.join(", "));
+</script>
+</body>
+</html>
