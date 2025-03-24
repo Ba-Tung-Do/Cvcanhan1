@@ -26,15 +26,14 @@
         getPerimeter() {
             return 2 * (this.length + this.width);
         }
-        // Phương thức vẽ hình chữ nhật lên canvas
         draw(context, x, y) {
-            context.beginPath();
-            context.rect(x, y, this.length, this.width);
-            context.strokeStyle = "blue";
-            context.lineWidth = 5;
-            context.stroke();
-            context.fillStyle = "lightblue";
-            context.fill();
+            context.beginPath();                           // Bắt đầu vẽ
+            context.rect(x, y, this.length, this.width);   // Vẽ hình chữ nhật
+            context.strokeStyle = "blue";                  // Đường viền màu xanh dương
+            context.lineWidth = 5;                         // Độ dày đường viền là 5px
+            context.stroke();                              // Vẽ đường viền
+            context.fillStyle = "lightblue";               // Màu nền là xanh nhạt
+            context.fill();                                // Tô màu nền
         }
     }
     // Bước 1: Khởi tạo đối tượng hình chữ nhật
@@ -42,8 +41,7 @@
 
     // Bước 2: Hiển thị hình chữ nhật trên canvas
     let canvas = document.getElementById("myCanvas"); // goi ra hinh chu nhạt bang phep gan Id
-    let ctx = canvas.getContext("2d");
-
+    let ctx = canvas.getContext("2d"); // lay ngu canh "ctx" de ve 2D
     // Bước 4: In diện tích và chu vi ra màn hình
     let area = rectangle.getArea();
     let perimeter = rectangle.getPerimeter();

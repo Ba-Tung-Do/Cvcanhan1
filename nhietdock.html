@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Temperature Class</title>
+</head>
+<body>
+<h2>Chuyển đổi nhiệt độ</h2>
+<p id="result"></p>
+<script>
+    // Định nghĩa lớp Temperature
+    class Temperature {
+        constructor(celsius) {
+            // Kiểm tra nhiệt độ không nhỏ hơn -273 độ C
+            if (celsius < -273) {
+                alert("Giá trị nhiệt độ không được nhỏ hơn -273°C. Đặt mặc định là -273°C.");
+                this.celsius = -273;
+            } else {
+                this.celsius = celsius;
+            }
+        }
+
+        // Phương thức chuyển sang Fahrenheit
+        fahrenheit() {
+            return (this.celsius * 9 / 5) + 32;
+        }
+
+        // Phương thức chuyển sang Kelvin
+        kelvin() {
+            return this.celsius + 273.15;
+        }
+    }
+
+    // Kịch bản chương trình
+    // 1. Khởi tạo đối tượng Temperature
+    let temp = new Temperature(25); // Gán giá trị 25°C cho đối tượng
+
+    // 2. Lấy giá trị quy đổi
+    let f = temp.fahrenheit();
+    let k = temp.kelvin();
+
+    // 3. Hiển thị kết quả ra giao diện
+    document.getElementById("result").innerHTML =
+        `Nhiệt độ hiện tại: ${temp.celsius}°C <br>` +
+        `Tương đương: ${f.toFixed(2)}°F <br>` +
+        `Tương đương: ${k.toFixed(2)}K`;
+</script>
+
+</body>
+</html>
