@@ -2,30 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Đánh giá học lực</title>
+    <title>Đếm số chẵn trong mảng</title>
 </head>
 <body>
 
 <script>
-    function danhGiaDiem(toan, anh, van) {
-        let diemTB = (toan + anh + van) / 3;
-
-        if (diemTB < 5) {
-            return `Điểm trung bình: ${diemTB.toFixed(2)} - Không đạt`;
-        } else if (diemTB < 8) {
-            return `Điểm trung bình: ${diemTB.toFixed(2)} - Đạt`;
-        } else {
-            return `Điểm trung bình: ${diemTB.toFixed(2)} - Tốt`;
+    function demSoChan(arr) {
+        let count = 0;
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] % 2 === 0) {
+                count++;
+            }
         }
+        return count;
     }
 
-    let toan = parseFloat(prompt("Nhập điểm Toán:"));
-    let anh = parseFloat(prompt("Nhập điểm Tiếng Anh:"));
-    let van = parseFloat(prompt("Nhập điểm Văn:"));
+    let input = prompt("Nhập các số, cách nhau bởi dấu phẩy (,):");
+    let numbers = input.split(",").map(Number); // tách chuỗi và trả về giá trị kiểu số
 
-    let ketQua = danhGiaDiem(toan, anh, van);
+    let soChan = demSoChan(numbers);
 
-    alert(ketQua);
+    alert(`Số lượng số chẵn trong mảng là: ${soChan}`);
 </script>
 
 </body>
