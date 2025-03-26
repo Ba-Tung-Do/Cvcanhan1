@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Ô tô tránh chướng ngại vật</title>
+    <style>
+        canvas {
+            border: 2px solid black;
+            display: block;
+            margin: 0 auto;
+            background: #eee;
+        }
+        #gameOver {
+            text-align: center;
+            font-size: 24px;
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<canvas id="myCanvas" width="400" height="400"></canvas>
+<p id="gameOver"></p>
+<script>
+    const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d");
+
+    const carImg = new Image();
+    carImg.src = "car1.png"; // xe người chơi (màu đỏ)
+
+    const greenCarImg = new Image();
+    greenCarImg.src = "greencar.jpg"; // xe đối thủ (màu xanh)
+
+    let x = 150, y = 300;
+    const width = 50, height = 100;
+    let speed = 10;
+    let score = 0;
+    let gameRunning = true;
+
+    const greenCars = [];
+    const greenCarWidth = 50;
+    const greenCarHeight = 100;
+
+    function drawCar() {
+        ctx.drawImage(carImg, x, y, width, height);
+    }
+
+    function drawGreenCars() {
+        for (let i = 0; i < greenCars.length; i++) {
+            let car = greenCars[i];
+            ctx.drawImage(greenCarImg, car.x, car.y, greenCarWidth, greenCarHeight);
+        }
+    }
+
+    function checkCollision() {
+        for (let i = 0; i < greenCars.length; i++) {
+            let car = greenCars[i];
+            if (
+                x < car.x + greenCarWidth &&
+                x + width > car.x &&
+                y < car.y + greenCarHeight &&
+                y + height > car.y
+            ) {
+                gameRunning = false;
+                document.getElementById("gameOver").innerText = "💥 Game Over! Điểm: " + score;
+            }
+        }
+    }
+
+    function update() {
+        if (!gameRunning) return;
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawCar();
+        drawGreenCars();
+
+        for (let i = 0; i < greenCars.length; i++) {
+            greenCars[i].y += 2;
+        }
+
+        for (let i = greenCars.length - 1; i >= 0; i--) {
+            if (greenCars[i].y > canvas.height) {
+                greenCars.splice(i, 1);
+                score++;
+            }
+        }
+
+        checkCollision();
+        requestAnimationFrame(update);
+    }
+
+    setInterval(() => {
+        if (gameRunning) {
+            for (let i = 0; i < 2; i++) { // Tăng số lượng xe xanh xuất hiện mỗi lần (2 xe)
+                const randX = Math.floor(Math.random() * (canvas.width - greenCarWidth));
+                greenCars.push({ x: randX, y: -greenCarHeight });
+            }
+        }
+    }, 1500);
+
+    document.addEventListener("keydown", function (event) {
+        if (!gameRunning) return;
+
+        if (event.code === "Space") speed = 20;
+
+        switch (event.key) {
+            case "ArrowUp":
+                if (y - speed >= 0) y -= speed;
+                break;
+            case "ArrowDown":
+                if (y + height + speed <= canvas.height) y += speed;
+                break;
+            case "ArrowLeft":
+                if (x - speed >= 0) x -= speed;
+                break;
+            case "ArrowRight":
+                if (x + width + speed <= canvas.width) x += speed;
+                break;
+        }
+    });
+
+    document.addEventListener("keyup", function (event) {
+        if (event.code === "Space") speed = 10;
+    });
+
+    greenCarImg.onload = function () {
+        carImg.onload = function () {
+            update();
+        };
+    };
+</script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mini Game Bắn Cá</title>
+    <style>
+        canvas {
+            background: #87CEEB;
+            display: block;
+            margin: 0 auto;
+            border: 2px solid #000;
+        }
+    </style>
+</head>
+<body>
+<canvas id="gameCanvas" width="800" height="400"></canvas>
+
+<script>
+    class Gun {
+        constructor(canvas) {
+            this.canvas = canvas;
+            this.x = canvas.width / 2;
+            this.y = canvas.height - 20;
+            this.width = 40;
+            this.height = 20;
+        }
+
+        draw(ctx) {
+            ctx.fillStyle = "black";
+            ctx.fillRect(this.x - this.width / 2, this.y, this.width, this.height);
+        }
+    }
+
+    class Fish {
+        constructor(canvasWidth, canvasHeight) {
+            this.spawnDirection = Math.floor(Math.random() * 4);
+            this.size = 30;
+            this.speed = 1 + Math.random() * 2;
+
+            switch (this.spawnDirection) {
+                case 0: // left to right
+                    this.x = 0;
+                    this.y = Math.random() * canvasHeight;
+                    this.vx = this.speed;
+                    this.vy = 0;
+                    break;
+                case 1: // right to left
+                    this.x = canvasWidth;
+                    this.y = Math.random() * canvasHeight;
+                    this.vx = -this.speed;
+                    this.vy = 0;
+                    break;
+                case 2: // top to bottom
+                    this.x = Math.random() * canvasWidth;
+                    this.y = 0;
+                    this.vx = 0;
+                    this.vy = this.speed;
+                    break;
+                case 3: // bottom to top
+                    this.x = Math.random() * canvasWidth;
+                    this.y = canvasHeight;
+                    this.vx = 0;
+                    this.vy = -this.speed;
+                    break;
+            }
+        }
+
+        draw(ctx) {
+            ctx.fillStyle = "orange";
+            ctx.beginPath();
+            ctx.ellipse(this.x, this.y, this.size, this.size / 2, 0, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+        }
+    }
+
+    class Game {
+        constructor(canvasId) {
+            this.canvas = document.getElementById(canvasId);
+            this.ctx = this.canvas.getContext("2d");
+            this.score = 0;
+            this.fishes = [];
+            this.gun = new Gun(this.canvas);
+            this.init();
+        }
+
+        init() {
+            var self = this;
+
+            this.canvas.addEventListener("click", function (e) {
+                var clickX = e.offsetX;
+                var clickY = e.offsetY;
+
+                for (var i = 0; i < self.fishes.length; i++) {
+                    var fish = self.fishes[i];
+                    var dx = clickX - fish.x;
+                    var dy = clickY - fish.y;
+                    var distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < fish.size) {
+                        self.fishes.splice(i, 1);
+                        self.score++;
+                        break;
+                    }
+                }
+            });
+
+            setInterval(function () {
+                self.fishes.push(new Fish(self.canvas.width, self.canvas.height));
+            }, 1000);
+
+            this.gameLoop();
+        }
+
+        drawScore() {
+            this.ctx.fillStyle = "black";
+            this.ctx.font = "20px Arial";
+            this.ctx.fillText("Score: " + this.score, 10, 30);
+        }
+
+        gameLoop() {
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+            this.gun.draw(this.ctx);
+            this.drawScore();
+
+            for (var i = 0; i < this.fishes.length; i++) {
+                var fish = this.fishes[i];
+                fish.update();
+                fish.draw(this.ctx);
+
+                if (fish.x < -fish.size || fish.x > this.canvas.width + fish.size ||
+                    fish.y < -fish.size || fish.y > this.canvas.height + fish.size) {
+                    this.fishes.splice(i, 1);
+                    i--;
+                }
+            }
+
+            requestAnimationFrame(this.gameLoop.bind(this));
+        }
+    }
+
+    var game = new Game("gameCanvas");
+</script>
+</body>
+</html>
