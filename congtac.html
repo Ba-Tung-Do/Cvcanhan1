@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class SwitchButton {
+        constructor() {
+            this.status = false; // trang thai cong tac
+            this.lamp=null;
+        }
+        switchOn() {
+            this.status = true;
+            if (this.lamp) {
+                this.lamp.turnOn();
+            }
+        }
+        switchOff() {
+            this.status = false;
+            if (this.lamp) {
+                this.lamp.turnOff();
+            }
+        }
+
+    }
+    class ElectricLamp{
+        constructor() {
+            this.status = false;
+        }
+        turnOn(){
+            this.status = true;
+            console.log("bong den dang bat");
+        }
+        turnOff(){
+            this.status = false;
+            console.log("bong den dang tat")
+        }
+    }
+
+    const lamp = new ElectricLamp();
+    const switchButton = new SwitchButton();
+    // ket noi cong tac va bong den
+    switchButton.connectToLamp(lamp);
+    // bat tat bong den 10 lan
+    for( let i =1;i<=10;i++){
+        console.log(" bat tat bong den " + i + " lan ");
+        if (i%2===0){
+            switchButton.switchOff();
+        } else {
+            switchButton.switchOn();
+        }
+    }
+</script>
+</body>
+</html>
