@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adam va Eva</title>
+</head>
+<body>
+<script>
+    class Apple  {
+        constructor() {
+            this.weight = 10; // trong luong tao 10
+        }
+        decrease(){
+            if (this.weight>0) {
+                this.weight--; // trong luong giam dan
+            }
+        }
+        isEmpty(){
+            return this.weight === 0;
+        }
+        getWeight(){
+            return this.weight;
+        }
+    }
+    class Human {
+        constructor(name,gender){
+            this.name = name;
+            this.gender = gender;
+            this.weight = 50;
+        }
+        isMale(){
+            return this.gender;
+        }
+        setGender(gender){
+            this.gender = gender;
+        }
+        checkApple(apple){
+            return !apple.isEmpty();
+        }
+        eat(apple){
+            if(!apple.isEmpty()){
+                apple.decrease();
+                this.weight++;
+                console.log(`${this.name} an mot mieng tao va khoi luong bay gio ${this.weight}`);
+            } else { console.log("tao da het")}
+        }
+        say(){
+            console.log(`toi la ${this.name}`);
+        }
+        getName(){
+            return this.name;
+        }
+        setName(name){
+            this.name = name;
+        }
+        getWeight(){
+            return this.weight;
+        }
+        setWeight(weight){
+            this.weight = weight;
+        }
+    }
+    const apple = new Apple();
+    const adam = new Human("Adam",true);
+    const eva = new Human("Eva",false);  //tao doi tuong theo class
+
+    // adam va eva an het tao
+    let turn=0;
+    while (!apple.isEmpty()) {
+        if (turn % 2 === 0) {
+            adam.eat(apple);
+        } else {
+            eva.eat(apple);
+        }
+        turn++;
+    }
+    console.log("tao da duoc an het");
+    console.log(`cang nang cua adam : ${adam.getWeight()} don vi`);
+    console.log(`can nang cua eva : ${eva.getName()} don vi`);
+</script>
+</body>
+</html>
