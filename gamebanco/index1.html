@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Cờ ca-rô 50x50</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .board {
+            display: grid;
+            grid-template-columns: repeat(50, 20px);
+            grid-template-rows: repeat(50, 20px);
+            margin: auto;
+            border: 2px solid #333;
+        }
+
+        .cell {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #ccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .cell:hover {
+            background-color: #f0f0f0;
+        }
+
+        #reset {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<h1>🕹️ Cờ Ca-rô 50x50</h1>
+<div class="board" id="board"></div>
+<h2 id="status">Người chơi hiện tại: X</h2>
+<button id="reset" onclick="resetGame()">🔄 Chơi lại</button>
+
+<script>
+    const size = 50;
+    const board = document.getElementById("board");
+    const statusText = document.getElementById("status");
+    const resetBtn = document.getElementById("reset");
+    let cells = [];
+    let currentPlayer = 'X';
+    let gameOver = false;
+
+    function createBoard() {
+        board.innerHTML = '';
+        cells = [];
+        for (let i = 0; i < size; i++) {
+            cells[i] = [];
+            for (let j = 0; j < size; j++) {
+                const cell = document.createElement("div");
+                cell.classList.add("cell");
+                cell.dataset.row = i;
+                cell.dataset.col = j;
+                cell.addEventListener("click", handleClick);
+                board.appendChild(cell);
+                cells[i][j] = '';
+            }
+        }
+        resetBtn.style.display = "none";
+        gameOver = false;
+    }
+
+    function handleClick(event) {
+        if (gameOver) return;
+
+        const cell = event.target;
+        const row = parseInt(cell.dataset.row);
+        const col = parseInt(cell.dataset.col);
+
+        if (cells[row][col] !== '') return;
+
+        cells[row][col] = currentPlayer;
+        cell.textContent = currentPlayer;
+
+        if (checkWin(row, col)) {
+            statusText.textContent = `🎉 Người chơi ${currentPlayer} thắng với 4 ô liên tiếp!`;
+            gameOver = true;
+            board.querySelectorAll(".cell").forEach(c => c.removeEventListener("click", handleClick));
+            resetBtn.style.display = "inline-block";
+        } else {
+            currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+            statusText.textContent = `Người chơi hiện tại: ${currentPlayer}`;
+        }
+    }
+
+    function checkWin(r, c) {
+        return (
+            checkDirection(r, c, 1, 0) ||
+            checkDirection(r, c, 0, 1) ||
+            checkDirection(r, c, 1, 1) ||
+            checkDirection(r, c, 1, -1)
+        );
+    }
+
+    function checkDirection(r, c, dr, dc) {
+        let count = 1;
+        for (let i = 1; i < 4; i++) {
+            const nr = r + dr * i;
+            const nc = c + dc * i;
+            if (nr < 0 || nr >= size || nc < 0 || nc >= size || cells[nr][nc] !== currentPlayer) break;
+            count++;
+        }
+        for (let i = 1; i < 4; i++) {
+            const nr = r - dr * i;
+            const nc = c - dc * i;
+            if (nr < 0 || nr >= size || nc < 0 || nc >= size || cells[nr][nc] !== currentPlayer) break;
+            count++;
+        }
+        return count >= 4;
+    }
+
+    function resetGame() {
+        currentPlayer = 'X';
+        statusText.textContent = `Người chơi hiện tại: ${currentPlayer}`;
+        createBoard();
+    }
+
+    // Khởi tạo bảng lần đầu
+    createBoard();
+</script>
+</body>
+</html>
