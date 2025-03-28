@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý sinh viên</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            display: flex;
+            width: 100%;
+            height: 150px;
+            background-color: #2142c1; /* Màu nền xanh đậm cho phần tiêu đề */
+        }
+
+        .logo {
+            width: 15%; /* Phần logo chiếm 15% chiều ngang */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo img {
+            margin-left: 80px;
+            width: 120px;
+            height: auto;
+        }
+
+        .university {
+            width: 85%;
+            color: white; /* Chữ màu trắng */
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center; /* Căn giữa nội dung văn bản */
+        }
+
+        .university h1 {
+            margin: 10px 0 0 0;
+            font-size: 50px;
+        }
+
+        .university h2 {
+            margin: 10px 0 0 0;
+        }
+
+        .tieude {
+            width: 100%;
+            height: 50px;
+            background-color: #21a4c1; /* Màu nền tiêu đề phụ */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .tieude h1 {
+            margin: 0;
+            color: white;
+            font-size: 30px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .container {
+            display: flex;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            border: 1px solid #000;
+        }
+
+        th, td {
+            padding: 8px;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="logo">
+        <img src="logo.png" alt="Logo"> <!-- Logo của trường -->
+    </div>
+    <div class="university">
+        <h1>TRƯỜNG ĐẠI HỌC KINH TẾ QUỐC DÂN</h1> <!-- Tên trường -->
+        <h2>KẾT NỐI TRI THỨC - VỮNG VÀNG TƯƠNG LAI</h2> <!-- Slogan -->
+    </div>
+</div>
+<div class="tieude">
+    <h1>QUẢN LÝ SINH VIÊN</h1> <!-- Tiêu đề trang -->
+</div>
+
+<div class="container">
+    <!-- Bảng nhập thông tin sinh viên -->
+    <table style="width: 500px;">
+        <tr>
+            <th colspan="2"> Thông tin học viên</th>
+        </tr>
+        <tr>
+            <th>Mã sinh viên</th>
+            <td><input type="number" id="id"></td> <!-- Input mã sinh viên -->
+        </tr>
+        <tr>
+            <th>Họ tên</th>
+            <td><input type="text" id="fullname"></td>
+        </tr>
+        <tr>
+            <th>Ngày sinh</th>
+            <td><input type="text" id="date"></td>
+        </tr>
+        <tr>
+            <th>Giới tính</th>
+            <td><input type="text" id="gender"></td>
+        </tr>
+        <tr>
+            <th>Lớp</th>
+            <td><input type="text" id="grade"></td>
+        </tr>
+        <tr>
+            <th>Ảnh 3x4</th>
+            <td>
+                <input type="file" id="imgFile" accept="image/*"> <!-- Upload ảnh -->
+                <input type="text" id="imgLink" placeholder="Hoặc dán đường link ảnh"> <!-- Hoặc nhập URL ảnh -->
+            </td>
+        </tr>
+        <tr>
+            <th></th>
+            <td>
+                <button style="background-color: limegreen" onclick="addStudent()">Thêm</button>
+                <button style="background-color: gold" onclick="updateStudent()">Lưu</button>
+            </td>
+        </tr>
+    </table>
+
+    <!-- Bảng danh sách sinh viên -->
+    <table style="width: 700px;">
+        <tr>
+            <th style="font-size: 28px" colspan="7">Danh sách học viên</th>
+        </tr>
+        <tr>
+            <th>ID</th>
+            <th>Họ tên</th>
+            <th>Ngày sinh</th>
+            <th>Giới tính</th>
+            <th>Lớp</th>
+            <th>Ảnh</th>
+            <th>Tùy chọn</th>
+        </tr>
+        <tbody id="list-student"></tbody> <!-- Nơi render sinh viên -->
+    </table>
+</div>
+
+<!-- Hiển thị tổng số sinh viên -->
+<p id="total-student" style="font-weight: bold; font-size: 18px; text-align: right; padding: 10px 30px;">
+    Tổng số sinh viên: 0
+</p>
+
+<script>
+    let students = []; // Danh sách sinh viên lưu trong bộ nhớ tạm
+
+    function addStudent() {
+        const student = getStudentFromInput();
+        const isDuplicate = students.some(s => s.id === student.id); // Kiểm tra trùng mã
+        if (isDuplicate) {
+            alert("Mã sinh viên đã tồn tại. Vui lòng nhập mã khác!");
+            return;
+        }
+        students.push(student); // Thêm sinh viên vào danh sách
+        displayStudents(); // Cập nhật bảng hiển thị
+        clearInput(); // Xóa input sau khi thêm
+    }
+
+    function updateStudent() {
+        const student = getStudentFromInput();
+        const index = students.findIndex(s => s.id === student.id); // Tìm sinh viên theo ID
+        if (index === -1) {
+            alert("Không tìm thấy sinh viên để cập nhật!");
+            return;
+        }
+        if (!student.img) {
+            student.img = students[index].img; // Giữ nguyên ảnh nếu không nhập mới
+        }
+        students[index] = student; // Cập nhật sinh viên
+        displayStudents();
+        clearInput();
+    }
+
+    function editStudent(index) {
+        const student = students[index];
+        document.getElementById("id").value = student.id;
+        document.getElementById("fullname").value = student.fullname;
+        document.getElementById("date").value = student.date;
+        document.getElementById("gender").value = student.gender;
+        document.getElementById("grade").value = student.grade;
+        document.getElementById("imgLink").value = student.img.startsWith("blob:") ? "" : student.img; // Chỉ hiển thị link nếu không phải ảnh từ file
+    }
+
+    function deleteStudent(index) {
+        if (confirm("Bạn có chắc chắn muốn xóa học viên này?")) {
+            students.splice(index, 1); // Xóa khỏi danh sách
+            displayStudents(); // Cập nhật giao diện
+        }
+    }
+
+    function displayStudents() {
+        const list = document.getElementById("list-student");
+        list.innerHTML = "";
+        students.forEach((student, index) => {
+            list.innerHTML += `
+                <tr>
+                    <td>${student.id}</td>
+                    <td>${student.fullname}</td>
+                    <td>${student.date}</td>
+                    <td>${student.gender}</td>
+                    <td>${student.grade}</td>
+                    <td><img src="${student.img}" alt="Ảnh" width="60"></td>
+                    <td>
+                        <button onclick="editStudent(${index})">Sửa</button>
+                        <button onclick="deleteStudent(${index})">Xóa</button>
+                    </td>
+                </tr>
+            `; // Thêm sinh viên vào bảng
+        });
+        document.getElementById("total-student").innerText = `Tổng số sinh viên: ${students.length}`; // Cập nhật số lượng
+    }
+
+    function getStudentFromInput() {
+        const id = document.getElementById("id").value;
+        const fullname = document.getElementById("fullname").value;
+        const date = document.getElementById("date").value;
+        const gender = document.getElementById("gender").value;
+        const grade = document.getElementById("grade").value;
+        const file = document.getElementById("imgFile").files[0]; // Lấy file ảnh từ máy
+        const link = document.getElementById("imgLink").value; // Hoặc ảnh từ đường dẫn
+
+        let img = "";
+        if (file) {
+            img = URL.createObjectURL(file); // Tạo URL tạm thời cho ảnh tải lên
+        } else if (link.trim() !== "") {
+            img = link.trim(); // Dùng link ảnh nếu có
+        }
+
+        return { id, fullname, date, gender, grade, img }; // Trả về đối tượng sinh viên
+    }
+
+    function clearInput() {
+        document.getElementById("id").value = "";
+        document.getElementById("fullname").value = "";
+        document.getElementById("date").value = "";
+        document.getElementById("gender").value = "";
+        document.getElementById("grade").value = "";
+        document.getElementById("imgFile").value = "";
+        document.getElementById("imgLink").value = ""; // Xóa toàn bộ ô input
+    }
+</script>
+
+</body>
+</html>
