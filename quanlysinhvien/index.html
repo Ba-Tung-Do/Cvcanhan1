@@ -8,228 +8,244 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
         }
 
         .header {
             display: flex;
-            width: 100%;
+            background-color: #2142c1;
+            color: white;
             height: 150px;
-            background-color: #2142c1; /* Màu nền xanh đậm cho phần tiêu đề */
+            align-items: center;
+            padding: 0 30px;
         }
 
         .logo {
-            width: 15%; /* Phần logo chiếm 15% chiều ngang */
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            flex: 0 0 120px;
         }
 
         .logo img {
-            margin-left: 80px;
-            width: 120px;
-            height: auto;
+            width: 100px;
         }
 
         .university {
-            width: 85%;
-            color: white; /* Chữ màu trắng */
-            margin-top: 10px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center; /* Căn giữa nội dung văn bản */
+            flex: 1;
+            text-align: center;
         }
 
         .university h1 {
-            margin: 10px 0 0 0;
-            font-size: 50px;
+            margin: 0;
+            font-size: 32px;
         }
 
         .university h2 {
-            margin: 10px 0 0 0;
+            margin: 5px 0 0;
+            font-size: 18px;
+            font-style: italic;
         }
 
         .tieude {
-            width: 100%;
-            height: 50px;
-            background-color: #21a4c1; /* Màu nền tiêu đề phụ */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .tieude h1 {
-            margin: 0;
-            color: white;
-            font-size: 30px;
+            background-color: #21a4c1;
             text-align: center;
-            width: 100%;
+            padding: 10px;
+            color: white;
+            font-size: 22px;
         }
 
         .container {
             display: flex;
-            padding: 20px;
+            flex-wrap: wrap;
             gap: 20px;
+            padding: 20px;
+            justify-content: center;
         }
 
         table {
+            background-color: white;
             border-collapse: collapse;
-            border: 1px solid #000;
+            width: 100%;
+            max-width: 800px;
         }
 
         th, td {
+            border: 1px solid #ccc;
             padding: 8px;
-            border: 1px solid #000;
+            text-align: left;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 95%;
+            padding: 5px;
+        }
+
+        .form-section,
+        .grade-info {
+            background-color: white;
+            padding: 15px;
+            border: 1px solid #ccc;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .form-section h3,
+        .grade-info h3 {
+            margin-top: 0;
+            color: #2142c1;
+        }
+
+        .button-group {
+            margin-top: 10px;
+        }
+
+        button {
+            padding: 6px 12px;
+            border: none;
+            margin-right: 5px;
+            cursor: pointer;
+            border-radius: 4px;
+            color: white;
+        }
+
+        .add-btn { background-color: #28a745; }
+        .save-btn { background-color: #ffc107; color: black; }
+        .edit-btn { background-color: #007bff; }
+        .delete-btn { background-color: #dc3545; }
+
+        .result-display {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #003366;
+        }
+
+        .search-box {
+            text-align: right;
+            padding: 10px 30px;
+        }
+
+        .search-box input {
+            padding: 6px;
+            width: 250px;
         }
     </style>
 </head>
 <body>
 <div class="header">
     <div class="logo">
-        <img src="logo.png" alt="Logo"> <!-- Logo của trường -->
+        <img src="logo.png" alt="Logo">
     </div>
     <div class="university">
-        <h1>TRƯỜNG ĐẠI HỌC KINH TẾ QUỐC DÂN</h1> <!-- Tên trường -->
-        <h2>KẾT NỐI TRI THỨC - VỮNG VÀNG TƯƠNG LAI</h2> <!-- Slogan -->
+        <h1>TRƯỜNG ĐẠI HỌC KINH TẾ QUỐC DÂN</h1>
+        <h2>KẾT NỐI TRI THỨC - VỮNG VÀNG TƯƠNG LAI</h2>
     </div>
 </div>
-<div class="tieude">
-    <h1>QUẢN LÝ SINH VIÊN</h1> <!-- Tiêu đề trang -->
+
+<div class="tieude">QUẢN LÝ SINH VIÊN</div>
+
+<div class="search-box">
+    <input type="text" id="searchInput" placeholder="Tìm kiếm theo họ tên..." oninput="searchStudent()">
 </div>
 
 <div class="container">
-    <!-- Bảng nhập thông tin sinh viên -->
-    <table style="width: 500px;">
-        <tr>
-            <th colspan="2"> Thông tin học viên</th>
-        </tr>
-        <tr>
-            <th>Mã sinh viên</th>
-            <td><input type="number" id="id"></td> <!-- Input mã sinh viên -->
-        </tr>
-        <tr>
-            <th>Họ tên</th>
-            <td><input type="text" id="fullname"></td>
-        </tr>
-        <tr>
-            <th>Ngày sinh</th>
-            <td><input type="text" id="date"></td>
-        </tr>
-        <tr>
-            <th>Giới tính</th>
-            <td><input type="text" id="gender"></td>
-        </tr>
-        <tr>
-            <th>Lớp</th>
-            <td><input type="text" id="grade"></td>
-        </tr>
-        <tr>
-            <th>Ảnh 3x4</th>
-            <td>
-                <input type="file" id="imgFile" accept="image/*"> <!-- Upload ảnh -->
-                <input type="text" id="imgLink" placeholder="Hoặc dán đường link ảnh"> <!-- Hoặc nhập URL ảnh -->
-            </td>
-        </tr>
-        <tr>
-            <th></th>
-            <td>
-                <button style="background-color: limegreen" onclick="addStudent()">Thêm</button>
-                <button style="background-color: gold" onclick="updateStudent()">Lưu</button>
-            </td>
-        </tr>
-    </table>
+    <div class="form-section">
+        <h3>Thông tin sinh viên</h3>
+        <label>Mã sinh viên: <input type="number" id="id"></label><br>
+        <label>Họ tên: <input type="text" id="fullname"></label><br>
+        <label>Ngày sinh: <input type="text" id="date"></label><br>
+        <label>Giới tính: <input type="text" id="gender"></label><br>
+        <label>Lớp: <input type="text" id="grade"></label><br>
+        <label>Ảnh: <input type="file" id="imgFile" accept="image/*"><br>
+            <input type="text" id="imgLink" placeholder="Hoặc dán link ảnh"></label>
+        <div class="button-group">
+            <button class="add-btn" onclick="addStudent()">Thêm</button>
+            <button class="save-btn" onclick="updateStudent()">Lưu</button>
+        </div>
+    </div>
 
-    <!-- Bảng danh sách sinh viên -->
-    <table style="width: 700px;">
+    <div class="grade-info">
+        <h3>Nhập môn học và điểm</h3>
+        <div id="subject-list"></div>
+        <div class="button-group">
+            <input type="text" id="newSubject" placeholder="Tên môn học">
+            <button class="add-btn" onclick="addSubject()">+ Môn</button>
+        </div>
+        <div class="result-display">
+            Điểm trung bình: <span id="avgDisplay">0.00</span><br>
+            Phân loại: <span id="typeDisplay">-</span>
+        </div>
+    </div>
+
+    <table>
+        <thead>
         <tr>
-            <th style="font-size: 28px" colspan="7">Danh sách học viên</th>
+            <th>ID</th><th>Họ tên</th><th>Ngày sinh</th><th>Giới tính</th><th>Lớp</th><th>Ảnh</th><th>ĐTB (Xếp loại)</th><th>Tuỳ chọn</th>
         </tr>
-        <tr>
-            <th>ID</th>
-            <th>Họ tên</th>
-            <th>Ngày sinh</th>
-            <th>Giới tính</th>
-            <th>Lớp</th>
-            <th>Ảnh</th>
-            <th>Tùy chọn</th>
-        </tr>
-        <tbody id="list-student"></tbody> <!-- Nơi render sinh viên -->
+        </thead>
+        <tbody id="list-student"></tbody>
     </table>
 </div>
 
-<!-- Hiển thị tổng số sinh viên -->
 <p id="total-student" style="font-weight: bold; font-size: 18px; text-align: right; padding: 10px 30px;">
     Tổng số sinh viên: 0
 </p>
 
 <script>
-    let students = []; // Danh sách sinh viên lưu trong bộ nhớ tạm
+    let students = [];
+    let subjects = ["Toán", "Văn", "Anh"];
 
-    function addStudent() {
-        const student = getStudentFromInput();
-        const isDuplicate = students.some(s => s.id === student.id); // Kiểm tra trùng mã
-        if (isDuplicate) {
-            alert("Mã sinh viên đã tồn tại. Vui lòng nhập mã khác!");
-            return;
-        }
-        students.push(student); // Thêm sinh viên vào danh sách
-        displayStudents(); // Cập nhật bảng hiển thị
-        clearInput(); // Xóa input sau khi thêm
-    }
-
-    function updateStudent() {
-        const student = getStudentFromInput();
-        const index = students.findIndex(s => s.id === student.id); // Tìm sinh viên theo ID
-        if (index === -1) {
-            alert("Không tìm thấy sinh viên để cập nhật!");
-            return;
-        }
-        if (!student.img) {
-            student.img = students[index].img; // Giữ nguyên ảnh nếu không nhập mới
-        }
-        students[index] = student; // Cập nhật sinh viên
-        displayStudents();
-        clearInput();
-    }
-
-    function editStudent(index) {
-        const student = students[index];
-        document.getElementById("id").value = student.id;
-        document.getElementById("fullname").value = student.fullname;
-        document.getElementById("date").value = student.date;
-        document.getElementById("gender").value = student.gender;
-        document.getElementById("grade").value = student.grade;
-        document.getElementById("imgLink").value = student.img.startsWith("blob:") ? "" : student.img; // Chỉ hiển thị link nếu không phải ảnh từ file
-    }
-
-    function deleteStudent(index) {
-        if (confirm("Bạn có chắc chắn muốn xóa học viên này?")) {
-            students.splice(index, 1); // Xóa khỏi danh sách
-            displayStudents(); // Cập nhật giao diện
-        }
-    }
-
-    function displayStudents() {
-        const list = document.getElementById("list-student");
-        list.innerHTML = "";
-        students.forEach((student, index) => {
-            list.innerHTML += `
-                <tr>
-                    <td>${student.id}</td>
-                    <td>${student.fullname}</td>
-                    <td>${student.date}</td>
-                    <td>${student.gender}</td>
-                    <td>${student.grade}</td>
-                    <td><img src="${student.img}" alt="Ảnh" width="60"></td>
-                    <td>
-                        <button onclick="editStudent(${index})">Sửa</button>
-                        <button onclick="deleteStudent(${index})">Xóa</button>
-                    </td>
-                </tr>
-            `; // Thêm sinh viên vào bảng
+    function renderSubjects() {
+        const subjectList = document.getElementById("subject-list");
+        subjectList.innerHTML = "";
+        subjects.forEach(subject => {
+            subjectList.innerHTML += `<label>${subject}: <input type="number" id="sub_${subject}" min="0" max="10" oninput="autoCalculate()"></label><br>`;
         });
-        document.getElementById("total-student").innerText = `Tổng số sinh viên: ${students.length}`; // Cập nhật số lượng
+    }
+
+    function addSubject() {
+        const subject = document.getElementById("newSubject").value.trim();
+        if (subject && !subjects.includes(subject)) {
+            subjects.push(subject);
+            renderSubjects();
+            document.getElementById("newSubject").value = "";
+        }
+    }
+
+    function autoCalculate() {
+        let sum = 0;
+        let count = 0;
+        subjects.forEach(sub => {
+            const val = parseFloat(document.getElementById("sub_" + sub)?.value);
+            if (!isNaN(val)) {
+                sum += val;
+                count++;
+            }
+        });
+        const avg = count ? (sum / count).toFixed(2) : "0.00";
+        let type = "-";
+        if (avg >= 8) type = "A";
+        else if (avg >= 6.5) type = "B";
+        else if (avg >= 5.5) type = "C";
+        else if (avg >= 4) type = "D";
+        else type = "Không đạt";
+
+        document.getElementById("avgDisplay").innerText = avg;
+        document.getElementById("typeDisplay").innerText = type;
+    }
+
+    window.onload = function () {
+        const data = localStorage.getItem("students");
+        const savedSubjects = localStorage.getItem("subjects");
+        if (savedSubjects) subjects = JSON.parse(savedSubjects);
+        renderSubjects();
+        if (data) {
+            students = JSON.parse(data);
+            displayStudents();
+        }
+    };
+
+    function saveToLocalStorage() {
+        localStorage.setItem("students", JSON.stringify(students));
+        localStorage.setItem("subjects", JSON.stringify(subjects));
     }
 
     function getStudentFromInput() {
@@ -238,29 +254,127 @@
         const date = document.getElementById("date").value;
         const gender = document.getElementById("gender").value;
         const grade = document.getElementById("grade").value;
-        const file = document.getElementById("imgFile").files[0]; // Lấy file ảnh từ máy
-        const link = document.getElementById("imgLink").value; // Hoặc ảnh từ đường dẫn
+        const file = document.getElementById("imgFile").files[0];
+        const link = document.getElementById("imgLink").value;
 
         let img = "";
-        if (file) {
-            img = URL.createObjectURL(file); // Tạo URL tạm thời cho ảnh tải lên
-        } else if (link.trim() !== "") {
-            img = link.trim(); // Dùng link ảnh nếu có
-        }
+        if (file) img = URL.createObjectURL(file);
+        else if (link.trim()) img = link.trim();
 
-        return { id, fullname, date, gender, grade, img }; // Trả về đối tượng sinh viên
+        let scores = {};
+        let sum = 0;
+        let count = 0;
+
+        subjects.forEach(sub => {
+            const val = parseFloat(document.getElementById("sub_" + sub)?.value);
+            if (!isNaN(val)) {
+                scores[sub] = val;
+                sum += val;
+                count++;
+            }
+        });
+
+        const avg = count ? (sum / count).toFixed(2) : "0.00";
+        let type = "-";
+        if (avg >= 8) type = "A";
+        else if (avg >= 6.5) type = "B";
+        else if (avg >= 5.5) type = "C";
+        else if (avg >= 4) type = "D";
+        else type = "Không đạt";
+
+        return { id, fullname, date, gender, grade, img, scores, avg, type };
     }
 
-    function clearInput() {
-        document.getElementById("id").value = "";
-        document.getElementById("fullname").value = "";
-        document.getElementById("date").value = "";
-        document.getElementById("gender").value = "";
-        document.getElementById("grade").value = "";
-        document.getElementById("imgFile").value = "";
-        document.getElementById("imgLink").value = ""; // Xóa toàn bộ ô input
+    function addStudent() {
+        const student = getStudentFromInput();
+        if (students.some(s => s.id === student.id)) return alert("Trùng mã sinh viên!");
+        students.push(student);
+        saveToLocalStorage();
+        displayStudents();
+    }
+
+    function updateStudent() {
+        const student = getStudentFromInput();
+        const index = students.findIndex(s => s.id === student.id);
+        if (index === -1) return alert("Không tìm thấy sinh viên!");
+        students[index] = student;
+        saveToLocalStorage();
+        displayStudents();
+    }
+
+    function displayStudents() {
+        const tbody = document.getElementById("list-student");
+        tbody.innerHTML = "";
+        students.forEach((s, i) => {
+            tbody.innerHTML += `
+          <tr>
+            <td>${s.id}</td>
+            <td>${s.fullname}</td>
+            <td>${s.date}</td>
+            <td>${s.gender}</td>
+            <td>${s.grade}</td>
+            <td><img src="${s.img}" width="50"></td>
+            <td>${s.avg} (${s.type})</td>
+            <td>
+              <button class="edit-btn" onclick="editStudent(${i})">Sửa</button>
+              <button class="delete-btn" onclick="deleteStudent(${i})">Xoá</button>
+            </td>
+          </tr>`;
+        });
+        document.getElementById("total-student").innerText = `Tổng số sinh viên: ${students.length}`;
+    }
+
+    function editStudent(index) {
+        const s = students[index];
+        document.getElementById("id").value = s.id;
+        document.getElementById("fullname").value = s.fullname;
+        document.getElementById("date").value = s.date;
+        document.getElementById("gender").value = s.gender;
+        document.getElementById("grade").value = s.grade;
+        document.getElementById("imgLink").value = s.img.startsWith("blob:") ? "" : s.img;
+
+        subjects.forEach(sub => {
+            document.getElementById("sub_" + sub).value = s.scores[sub] || "";
+        });
+
+        document.getElementById("avgDisplay").innerText = s.avg;
+        document.getElementById("typeDisplay").innerText = s.type;
+    }
+
+    function deleteStudent(index) {
+        if (confirm("Bạn có chắc muốn xoá sinh viên này?")) {
+            students.splice(index, 1);
+            saveToLocalStorage();
+            displayStudents();
+        }
+    }
+
+    function searchStudent() {
+        const keyword = document.getElementById("searchInput").value.toLowerCase();
+        const tbody = document.getElementById("list-student");
+        tbody.innerHTML = "";
+        let count = 0;
+        students.forEach((s, i) => {
+            if (s.fullname.toLowerCase().includes(keyword)) {
+                count++;
+                tbody.innerHTML += `
+            <tr>
+              <td>${s.id}</td>
+              <td>${s.fullname}</td>
+              <td>${s.date}</td>
+              <td>${s.gender}</td>
+              <td>${s.grade}</td>
+              <td><img src="${s.img}" width="50"></td>
+              <td>${s.avg} (${s.type})</td>
+              <td>
+                <button class="edit-btn" onclick="editStudent(${i})">Sửa</button>
+                <button class="delete-btn" onclick="deleteStudent(${i})">Xoá</button>
+              </td>
+            </tr>`;
+            }
+        });
+        document.getElementById("total-student").innerText = `Tổng số sinh viên: ${count}`;
     }
 </script>
-
 </body>
 </html>
