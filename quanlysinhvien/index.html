@@ -212,7 +212,7 @@
         </div>
     </div>
 
-    <div class="grade-info">
+    <div class="grade-info">=
         <h3>Nhập môn học và điểm</h3>
         <div id="subject-list"></div>
         <div class="button-group">
@@ -434,6 +434,7 @@
         let checksv = ""; // Chuỗi HTML để hiển thị kết quả
         let count = 0; // Đếm số sinh viên tìm thấy
         for (let i = 0; i < students.length; i++) {
+
             if (students[i].fullname.toLowerCase().includes(keyword)) { // Nếu họ tên chứa từ khóa
                 count++; // Tăng số đếm
                 checksv += `<tr>

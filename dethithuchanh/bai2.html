@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>So sánh hai phân số</title>
+</head>
+<body>
+<script>
+  // ham kiem tra phan so a va phan so b
+  function soSanhPhanSo(tu1, mau1, tu2, mau2) {
+    return tu1 * mau2 === tu2 * mau1;
+  }
+  let tu1 = parseInt(prompt("nhap tu so phan so thu nhat:"));
+  let mau1 = parseInt(prompt("nhap mau so phan so thu hai:"));
+  let tu2 = parseInt(prompt("nhap tu so phan so thu hai:"));
+  let mau2 = parseInt(prompt("nhap mau so phan so thu hai:"));
+
+  // kiem tra mau so khac 0
+  if (mau1 === 0 || mau2 === 0) {
+    alert("Mau so khong duoc bang 0 !");
+  } else {
+    let ketQua = soSanhPhanSo(tu1, mau1, tu2, mau2);
+    alert(`ket qua: ${ketQua ? "True" : "False"}`);
+  }
+</script>
+</body>
+</html>

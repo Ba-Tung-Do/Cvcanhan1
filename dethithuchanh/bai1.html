@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>kiem tra so nguyen to nho hon 50</title>
+</head>
+<body>
+<script>
+  // check so nguyen to
+  function isPrime(n) {
+    if (n < 2) return false;
+    for (let i = 2; i <= Math.sqrt(n); i++) {
+      if (n % i === 0) return false;
+    }
+    return true;
+  }
+  // nhap so luong phan tu cua mang
+  let n = parseInt(prompt("nhap so phan tu cua mang (n ≤ 50):"));
+  while (isNaN(n) || n <= 0 || n > 50) {
+    n = parseInt(prompt("nhap so nguyen tu 1 den 50:"));
+  }
+  // nhap cac phan tu cua mang
+  let a = [];
+  for (let i = 0; i < n; i++) {
+    let num = parseInt(prompt(`Nhap phan tu a[${i}]:`));
+    while (isNaN(num)) {
+      num = parseInt(prompt(`Phan tu khong hop le nhap lai[${i}]:`));
+    }
+    a.push(num);
+  }
+  // loc so khong phai nguyen to
+  let b = [];
+  for (let i = 0; i < a.length; i++) {
+    if (isPrime(a[i])) {
+      b.push(a[i]);
+    }
+  }
+  alert("mang da nhap: " + a.join(", "));
+  alert("mang cac so nguyen to la : " + (b.length > 0 ? b.join(", ") : "khong co so nguyen to nao"));
+</script>
+</body>
+</html>

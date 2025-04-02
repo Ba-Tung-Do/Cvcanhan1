@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Quản lý sổ tiết kiệm</title>
+</head>
+<body>
+<script>
+  class SoTietKiem {
+    constructor(maSo, loaiTietKiem, tenKH, cmnd, ngayMoSo, soTienGui) {
+      this.maSo = maSo;
+      this.loaiTietKiem = loaiTietKiem;
+      this.tenKH = tenKH;
+      this.cmnd = cmnd;
+      this.ngayMoSo = ngayMoSo;
+      this.soTienGui = soTienGui;
+    }
+  }
+
+  // danh sach so tiet kiem
+  let danhSach = [];
+
+  // Hàm kiểm tra dữ liệu đầu vào (validate) trước khi thêm
+  function validate(stk) {
+    if (!stk.maSo || stk.maSo.length > 5) return "ma so khong dung , toi da 5 ky tu";
+    if (!stk.loaiTietKiem || stk.loaiTietKiem.length > 10) return "loai tiet kiem khong dung,toi da 10 ky tu";
+    if (!stk.tenKH || stk.tenKH.length > 30) return "Ten khach hang khong hop le ";
+    if (isNaN(stk.cmnd)) return "CMND phai la so";
+    if (isNaN(Date.parse(stk.ngayMoSo))) return  "Ngay mo so theo dinh dang : YYYY-MM-DD";
+    if (isNaN(stk.soTienGui) || stk.soTienGui <= 0) return "So tien gui khong hop le";
+    return null; // tra ve null neu du lieu khong hop le
+  }
+
+  // ham them so tiet kiem vao danh sach
+  function themSoTietKiem() {
+    while (true) {
+      let maSo = prompt("nhap ma so so tiet kiem:");
+
+      // Check ma so trung nhau
+      if (danhSach.find(s => s.maSo === maSo)) {
+        alert("Ma so da ton tai ,nhap ma khac .");
+        continue;
+      }
+
+      // nhap cac thong tin trong so tiet kiem
+      let loai = prompt("Nhap loai tiet kiem:");
+      let ten = prompt("nhap ho ten khach hang .");
+      let cmnd = parseInt(prompt("Nhap so chung minh nhan dan:"));
+      let ngay = prompt("Nhap ngay mo so tiet kiem:");
+      let tien = parseFloat(prompt("Nhap so tien gui tiet kiem:"));
+
+      // tao doi tuong so tiet kiem
+      let stk = new SoTietKiem(maSo, loai, ten, cmnd, ngay, tien);
+
+      // Kiem tra tinh dung cua du lieu
+      let loi = validate(stk);
+      if (loi) {
+        alert("thong tin loi : " + loi + "\nVui long nhap lai thong tin.");
+      } else {
+        danhSach.push(stk);
+        alert("da them thanh cong!");
+        hienThiDanhSach();
+        break;
+      }
+    }
+  }
+
+  // xoa so tiet kiem
+  function xoaSoTietKiem() {
+    let maXoa = prompt("Nhap ma so so tiet kiem muon xoa:");
+    let index = danhSach.findIndex(s => s.maSo === maXoa);
+
+    if (index === -1) {
+      alert("khong tim thay ma so nay, nhap lai.");
+    } else {
+      let xacNhan = confirm("ban chac chan muon xoa so tiet kiem nay ?");
+      if (xacNhan) {
+        danhSach.splice(index, 1); // Xoa phan tu khoi mang
+        alert("Da xoa thanh cong!");
+        hienThiDanhSach();
+      }
+    }
+  }
+
+  // hien thi danh sach so tiet kiem
+  function hienThiDanhSach() {
+    if (danhSach.length === 0) {
+      alert("danh sach trong , moi them vao.");
+      return;
+    }
+
+    // tao chuoi hien thi so tiet kiem
+    let output = " Danh sach so tiet kiem:\n";
+    for (let s of danhSach) {
+      output += `- Ma so: ${s.maSo}, Loai: ${s.loaiTietKiem}, Khach hang: ${s.tenKH}, CMND: ${s.cmnd}, Ngay mo so : ${s.ngayMoSo}, So tien gui: ${s.soTienGui} VND\n`;
+    }
+
+    alert(output);
+  }
+
+  // menu dieu khien
+  while (true) {
+    let chon = prompt(
+            " Chon chuc nang:\n" +
+            "1. Them so tiet kiem\n" +
+            "2. Xoa so tiet kiem\n" +
+            "3. Hien thi danh sach\n" +
+            "4. Thoat"
+    );
+
+    if (chon === "1") {
+      themSoTietKiem();
+    } else if (chon === "2") {
+      xoaSoTietKiem();
+    } else if (chon === "3") {
+      hienThiDanhSach();
+    } else if (chon === "4") {
+      alert("Hen gap lai !");
+      break;
+    } else {
+      alert(" Lua chon khong hop le , moi nhap lai.");
+    }
+  }
+</script>
+</body>
+</html>

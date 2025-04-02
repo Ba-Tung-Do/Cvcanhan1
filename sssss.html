@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Quản lý sổ tiết kiệm</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f4f4f4;
+    }
+    h1 {
+      color: #2c3e50;
+    }
+    button {
+      margin: 5px;
+      padding: 8px 15px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #2c3e50;
+      color: white;
+    }
+    input[type="date"] {
+      padding: 5px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+<h1>Quản lý sổ tiết kiệm</h1>
+<button onclick="themSoTietKiem()">Thêm sổ tiết kiệm</button>
+<button onclick="xoaSoTietKiem()">Xoá sổ tiết kiệm</button>
+<table id="bangSoTietKiem">
+  <thead>
+  <tr>
+    <th>Mã sổ</th>
+    <th>Loại tiết kiệm</th>
+    <th>Tên KH</th>
+    <th>CMND</th>
+    <th>Ngày mở sổ</th>
+    <th>Số tiền gửi (VND)</th>
+  </tr>
+  </thead>
+  <tbody id="noiDungBang"></tbody>
+</table>
+
+<script>
+  class SoTietKiem {
+    constructor(maSo, loaiTietKiem, tenKH, cmnd, ngayMoSo, soTienGui) {
+      this.maSo = maSo;
+      this.loaiTietKiem = loaiTietKiem;
+      this.tenKH = tenKH;
+      this.cmnd = cmnd;
+      this.ngayMoSo = ngayMoSo;
+      this.soTienGui = soTienGui;
+    }
+  }
+
+  let danhSach = [];
+
+  function validate(stk) {
+    if (!stk.maSo || stk.maSo.length > 5) return "Mã số không hợp lệ (tối đa 5 ký tự)";
+    if (!stk.loaiTietKiem || stk.loaiTietKiem.length > 10) return "Loại tiết kiệm không hợp lệ (tối đa 10 ký tự)";
+    if (!stk.tenKH || stk.tenKH.length > 30) return "Tên khách hàng không hợp lệ (tối đa 30 ký tự)";
+    if (isNaN(stk.cmnd)) return "CMND phải là số";
+    if (isNaN(Date.parse(stk.ngayMoSo))) return "Ngày mở sổ không hợp lệ";
+    if (isNaN(stk.soTienGui) || stk.soTienGui <= 0) return "Số tiền gửi không hợp lệ";
+    return null;
+  }
+
+  function themSoTietKiem() {
+    let maSo = prompt("Nhập mã số sổ tiết kiệm:");
+    if (danhSach.find(s => s.maSo === maSo)) {
+      alert("Mã số đã tồn tại!"); return;
+    }
+    let loai = prompt("Nhập loại tiết kiệm:");
+    let ten = prompt("Nhập họ tên khách hàng:");
+    let cmnd = parseInt(prompt("Nhập số CMND:"));
+    let ngay = prompt("Nhập ngày mở sổ (theo định dạng YYYY-MM-DD):");
+    let tien = parseFloat(prompt("Nhập số tiền gửi:"));
+
+    let stk = new SoTietKiem(maSo, loai, ten, cmnd, ngay, tien);
+    let loi = validate(stk);
+    if (loi) {
+      alert("Lỗi: " + loi);
+    } else {
+      danhSach.push(stk);
+      hienThiDanhSach();
+    }
+  }
+
+  function xoaSoTietKiem() {
+    let maXoa = prompt("Nhập mã sổ tiết kiệm muốn xoá:");
+    let index = danhSach.findIndex(s => s.maSo === maXoa);
+    if (index === -1) {
+      alert("Không tìm thấy mã sổ này.");
+    } else {
+      if (confirm("Bạn có chắc muốn xoá không?")) {
+        danhSach.splice(index, 1);
+        hienThiDanhSach();
+      }
+    }
+  }
+
+  function hienThiDanhSach() {
+    let tbody = document.getElementById("noiDungBang");
+    tbody.innerHTML = "";
+    danhSach.forEach(s => {
+      let row = `<tr>
+        <td>${s.maSo}</td>
+        <td>${s.loaiTietKiem}</td>
+        <td>${s.tenKH}</td>
+        <td>${s.cmnd}</td>
+        <td>${s.ngayMoSo}</td>
+        <td>${s.soTienGui}</td>
+      </tr>`;
+      tbody.innerHTML += row;
+    });
+  }
+</script>
+</body>
+</html>
